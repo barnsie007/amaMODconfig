@@ -1,0 +1,22 @@
+<plugin>
+    <groupId>org.openrewrite.maven</groupId>
+    <artifactId>rewrite-maven-plugin</artifactId>
+    <version>5.45.0</version>
+    <configuration>
+        <activeRecipes>
+            <!--Avoid using the deprecated WSSecurityHelper revokeSSOCookies and getLTPACookieFromSSOToken methods -->
+            <recipe>org.openrewrite.java.liberty.WebSphereUnavailableSSOMethods</recipe>
+            <!--Getting the server name on Liberty-->
+            <recipe>org.openrewrite.java.liberty.ServerName</recipe>
+            <!--Use the default InitialContext JNDI properties-->
+            <recipe>org.openrewrite.java.liberty.RemoveWas2LibertyNonPortableJndiLookup</recipe>
+        </activeRecipes>
+    </configuration>
+    <dependencies>
+        <dependency>
+            <groupId>org.openrewrite.recipe</groupId>
+            <artifactId>rewrite-liberty</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+    </dependencies>
+</plugin>
